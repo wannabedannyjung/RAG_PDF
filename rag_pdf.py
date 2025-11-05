@@ -1,5 +1,7 @@
 ##############################################################
 # RAG over PDF with FAISS & Streamlit
+#
+# created by danny.jung@samsung.com
 # 
 # 필요 패키지 설치 커맨드
 # 주의점 : 미니콘다 가상환경을 새로 만들어서 사용할 것, LangFlow 환경에 설치시 기존 개발 환경과 충돌 발생
@@ -7,6 +9,11 @@
 # pip install uv
 # uv pip install -U streamlit langchain langchain-community langchain-openai sentence-transformers faiss-cpu pypdf
 # pip install -U langchain-huggingface
+#
+# 기본으로 OpenAI 사용하도록 되어 있으므로, 로컬 모델 올라마를 사용할 경우, 실행후 좌측 메뉴에서 올라마로 선택하고
+# 코드를 검색하면, value="exaone3.5:2.4b" 요 부분을 사용하는 로컬 모델로 변경할것.
+#
+# 임베더는 가장 작은 모델을 사용하였으므로, 좋은 임베딩 모델을 사용할 경우, RAG 성능이 좋아지나, 하드웨어 디펜던시가 있음을 알것.
 #
 # 실행 방법 : # streamlit run rag_pdf.py
 #
@@ -310,4 +317,5 @@ if query:
         with st.expander("📌 출처 (Top-k 문서) 보기", expanded=False):
             for i, s in enumerate(sources, start=1):
                 st.markdown(f"**{i}. {s['source']}** — p.{s['page']}\n\n> {s['snippet']}")
+
 
